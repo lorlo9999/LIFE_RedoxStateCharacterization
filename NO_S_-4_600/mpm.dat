@@ -1,0 +1,199 @@
+H2=1d-4
+N2=1d-4
+H2O=1d-4
+CO2=1d-4
+NH3=1d-4
+CH4=1d-4
+
+chemistry=.false.
+condensates=.false.
+
+free_tprofile=.true.
+freePT_fitT=.true.
+
+cia=.true.
+par_tprofile=.false.
+
+pmin=1d-9
+*which upper limit is sensible for our simulations
+*set to 1000 for test
+pmax=1000d0
+
+nr=50
+
+*useobsgrid set to true ignores this
+lmin=2d0
+lmax=20d0
+
+*number of points in correlated k-tables
+ng=25
+
+specres=100
+
+logemis=.false.
+
+scattering=.true.
+scattstar=.true.
+
+Tstar=5777d0
+Rstar=1d0
+Dplanet=1d0
+distance=10
+
+obs1:type="emis"
+obs1:file=Fluxes/NO_S_6_600
+
+*parametrized TP profile
+*gammaT =  4.8279612E-01
+*betaT =  2.5E-01
+*kappa =  1.3965331E-01
+*TeffP =  3E+00
+
+*COratio =  0.55
+*metallicity =  2.0562344E-01
+
+*not used if chemistry off
+*fitpar:keyword="COratio"
+*fitpar:min=0.1
+*fitpar:max=1d0
+*fitpar:log=.false.
+
+*fitpar:keyword="metallicity"
+*fitpar:min=-1.0
+*fitpar:max=2d0
+*fitpar:log=.false.
+
+** setsurfP=.true. means abundances are partial pressures at the surface. 
+** Pmax is computed from the sum of all partial pressures
+setsurfP=.true.
+
+** Michiel--> Since Pmax is computed from the sum of all partial pressures, we do not retrieve it anymore
+** Lorenzo --> I still want to retrieve it to have a posterior distribution of it
+
+fitpar:keyword="pmax"
+fitpar:min=1d-4
+fitpar:max=1d3
+fitpar:log=.true.
+
+** We need to change the ranges of all molecules to reflect partial pressures at the surface
+fitpar:keyword="H2"
+fitpar:min=1d-9
+fitpar:max=1d3
+fitpar:log=.true.
+
+fitpar:keyword="H2O"
+fitpar:min=1d-9
+fitpar:max=1d3
+fitpar:log=.true.
+
+fitpar:keyword="CO2"
+fitpar:min=1d-9
+fitpar:max=1d3
+fitpar:log=.true.
+
+fitpar:keyword="CH4"
+fitpar:min=1d-9
+fitpar:max=1d3
+fitpar:log=.true.
+
+fitpar:keyword="NH3"
+fitpar:min=1d-9
+fitpar:max=1d3
+fitpar:log=.true.
+
+fitpar:keyword="N2"
+fitpar:min=1d-9
+fitpar:max=1d3
+fitpar:log=.true.
+
+fitpar:keyword="Rp"
+fitpar:min=0.010
+fitpar:max=0.200
+fitpar:log=.false.
+
+*log of planet's surface gravity
+*fitpar:keyword="loggP"
+*fitpar:min=2.0
+*fitpar:max=4.5
+*fitpar:log=.false.
+
+fitpar:keyword="Mp"
+fitpar:min=0.001
+fitpar:max=0.006
+fitpar:log=.false.
+
+fitpar:keyword="tprofile"
+nTpoints = 6
+Pref=0.1
+
+useobsgrid=.true.
+
+run3D=.true.
+night2day=1d0
+
+computeT=.false.
+
+cia1:file="/Users/users/cesario/ARCiS/Data/CIA/CO2-CO2_combined.cia"
+cia2:file="/Users/users/cesario/ARCiS/Data/CIA/N2-N2_ordered.cia"
+cia3:file="/Users/users/cesario/ARCiS/Data/CIA/N2-H2O_2018.cia"
+cia4:file="/Users/users/cesario/ARCiS/Data/CIA/CO2-CH4_2018.cia"
+cia5:file="/Users/users/cesario/ARCiS/Data/CIA/CO2-H2_2018.cia"
+cia6:file="/Users/users/cesario/ARCiS/Data/CIA/H2-CH4_eq_2011.cia"
+
+retrieval=.true.
+retrievaltype='MN'
+
+*MultiNest parameters
+*initial population setup, increase if some parameters don't converge
+npop=300
+*convergence criterion
+efr=0.2
+
+resume_nest=.false.*** command line keywords ***
+obs1:file=Fluxes/NO_S_-4_600
+*** retrieval keywords ***
+retrieval=.false.
+pmax =  2.6344989E+01
+H2 =  4.7100861E-05
+H2O =  2.0120171E-01
+CO2 =  8.7646063E-06
+CH4 =  6.4398646E-04
+NH3 =  1.2029058E-02
+N2 =  2.8735177E-07
+Rp =  9.5912836E-02
+Mp =  2.7295901E-03
+Tpoint001 =  1.6295819E+02
+Tpoint002 =  1.9487241E+01
+Tpoint003 =  4.7164765E+01
+Tpoint004 =  1.2449760E+02
+Tpoint005 =  3.0704844E+02
+Tpoint006 =  2.7642128E+02
+Ppoint002 =  8.6274187E-09
+Ppoint003 =  3.7238928E-07
+Ppoint004 =  1.7532906E-06
+Ppoint005 =  6.7325383E+00
+*** command line keywords ***
+pew=.true.
+Pmax=1000
+*** Median Probability Model parameters ***
+retrieval=.false.
+pew=.false.
+pmax =  8.1662898E-02
+H2 =  1.6441829E-05
+H2O =  1.3590930E+02
+CO2 =  5.3469214E-04
+CH4 =  1.0809007E-01
+NH3 =  4.6514878E+00
+N2 =  1.1157643E-06
+Rp =  9.3747307E-02
+Mp =  3.8870585E-03
+Tpoint001 =  5.2809206E+01
+Tpoint002 =  1.5455048E+02
+Tpoint003 =  2.7999407E+01
+Tpoint004 =  1.0353848E+02
+Tpoint005 =  3.0013707E+02
+Tpoint006 =  7.0299556E+00
+Ppoint002 =  6.0171830E-09
+Ppoint003 =  4.8086842E-07
+Ppoint004 =  2.0693440E-06
+Ppoint005 =  2.0104384E+00
